@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BarcodeLib;
 
 namespace barcode_generator
 {
@@ -32,20 +33,31 @@ namespace barcode_generator
                         break;
                     }
                 }
-            
-                
 
-
-                if (temp.Length == 13)
+                if (temp.Length == 12)
                 {
                     continue;
                 }
                 else
                 {
                     MessageBox.Show("Ошибка в " + (i+1).ToString() + " строке, недостаточное количество цифр.", "Ошибка входных данных", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    break;
+                    //break;
                 }
-                    
+
+                BarcodeLib.Barcode barcode = new BarcodeLib.Barcode()
+                {
+                    IncludeLabel = true,
+                    Alignment = AlignmentPositions.CENTER,
+                    Width = 300,
+                    Height = 100,
+                    RotateFlipType = RotateFlipType.RotateNoneFlipNone,
+                    BackColor = Color.White,
+                    ForeColor = Color.Black,
+                };
+
+                Image img = barcode.Encode(TYPE.CODE128B, temp);
+                img.Save("C:/work/myfile.png",System.Drawing.Imaging.ImageFormat.Png);
+
             }
            
         }
