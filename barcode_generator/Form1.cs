@@ -20,9 +20,11 @@ namespace barcode_generator
 
         private void btn_generate_Click(object sender, EventArgs e)
         {
+            List<string> barcodes = new List<string>();
+            List<Image> barimages = new List<Image>();
             int i = 0;
             string temp;
-            for (i = 0; i < txt_codes.Lines.Length; i++ )
+            for (i = 0; i < txt_codes.Lines.Length - 1; i++ )
             {
                 temp = txt_codes.Lines[i].Trim();
                 foreach (char let in temp)
@@ -34,16 +36,12 @@ namespace barcode_generator
                     }
                 }
 
-                if (temp.Length == 12)
-                {
-                    continue;
-                }
-                else
+                if (!(temp.Length == 13))
                 {
                     MessageBox.Show("Ошибка в " + (i+1).ToString() + " строке, недостаточное количество цифр.", "Ошибка входных данных", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    //break;
                 }
 
+                String folder = txt_folder.Text;
                 BarcodeLib.Barcode barcode = new BarcodeLib.Barcode()
                 {
                     IncludeLabel = true,
@@ -55,11 +53,24 @@ namespace barcode_generator
                     ForeColor = Color.Black,
                 };
 
-                Image img = barcode.Encode(TYPE.CODE128B, temp);
-                img.Save("C:/work/myfile.png",System.Drawing.Imaging.ImageFormat.Png);
+                Image img = barcode.Encode(TYPE.EAN13, temp);
+                img.Save(folder + "/" + temp +".png",System.Drawing.Imaging.ImageFormat.Png);
 
             }
            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (folder_browser.ShowDialog() == DialogResult.OK)
+            {
+                txt_folder.Text = folder_browser.SelectedPath;
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

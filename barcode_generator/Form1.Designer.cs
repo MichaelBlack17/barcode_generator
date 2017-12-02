@@ -30,6 +30,11 @@
         {
             this.btn_generate = new System.Windows.Forms.Button();
             this.txt_codes = new System.Windows.Forms.TextBox();
+            this.folder_browser = new System.Windows.Forms.FolderBrowserDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txt_folder = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_generate
@@ -50,11 +55,52 @@
             this.txt_codes.Size = new System.Drawing.Size(183, 173);
             this.txt_codes.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(290, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Выбрать...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txt_folder
+            // 
+            this.txt_folder.Location = new System.Drawing.Point(12, 25);
+            this.txt_folder.Name = "txt_folder";
+            this.txt_folder.Size = new System.Drawing.Size(272, 20);
+            this.txt_folder.TabIndex = 4;
+            this.txt_folder.Text = "C:\\";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Директория сохранения файлов";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Введите баркоды";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 258);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txt_folder);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_codes);
             this.Controls.Add(this.btn_generate);
             this.Name = "Form1";
@@ -67,6 +113,11 @@
         #endregion
         private System.Windows.Forms.Button btn_generate;
         private System.Windows.Forms.TextBox txt_codes;
+        private System.Windows.Forms.FolderBrowserDialog folder_browser;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_folder;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
