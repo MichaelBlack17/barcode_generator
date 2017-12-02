@@ -35,11 +35,12 @@
             this.txt_folder = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.check_save = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_generate
             // 
-            this.btn_generate.Location = new System.Drawing.Point(201, 73);
+            this.btn_generate.Location = new System.Drawing.Point(201, 191);
             this.btn_generate.Name = "btn_generate";
             this.btn_generate.Size = new System.Drawing.Size(204, 55);
             this.btn_generate.TabIndex = 1;
@@ -54,6 +55,7 @@
             this.txt_codes.Name = "txt_codes";
             this.txt_codes.Size = new System.Drawing.Size(183, 173);
             this.txt_codes.TabIndex = 2;
+            this.txt_codes.Text = "2002500023891";
             // 
             // button1
             // 
@@ -71,7 +73,7 @@
             this.txt_folder.Name = "txt_folder";
             this.txt_folder.Size = new System.Drawing.Size(272, 20);
             this.txt_folder.TabIndex = 4;
-            this.txt_folder.Text = "C:\\";
+            this.txt_folder.Text = "C:\\temp";
             // 
             // label1
             // 
@@ -92,11 +94,22 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Введите баркоды";
             // 
+            // check_save
+            // 
+            this.check_save.AutoSize = true;
+            this.check_save.Location = new System.Drawing.Point(201, 75);
+            this.check_save.Name = "check_save";
+            this.check_save.Size = new System.Drawing.Size(201, 17);
+            this.check_save.TabIndex = 7;
+            this.check_save.Text = "Сохранить изображения баркодов";
+            this.check_save.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 258);
+            this.Controls.Add(this.check_save);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_folder);
@@ -118,6 +131,7 @@
         private System.Windows.Forms.TextBox txt_folder;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox check_save;
     }
 }
 

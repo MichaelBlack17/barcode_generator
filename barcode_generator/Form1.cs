@@ -20,11 +20,14 @@ namespace barcode_generator
 
         private void btn_generate_Click(object sender, EventArgs e)
         {
-            List<string> barcodes = new List<string>();
-            List<Image> barimages = new List<Image>();
+            List<string> barcodes = new List<string>(); // cписок введенных баркодов
+            List<string> art = new List<string>();      // список артиклов на основе баркодов
+            List<Image> barimages = new List<Image>();  // список сгенерированных изображений баркодов
             int i = 0;
             string temp;
-            for (i = 0; i < txt_codes.Lines.Length - 1; i++ )
+            String folder = txt_folder.Text;
+            int range = txt_codes.Lines.Length;
+            for (i = 0; i < range; i++ )
             {
                 temp = txt_codes.Lines[i].Trim();
                 foreach (char let in temp)
@@ -40,23 +43,53 @@ namespace barcode_generator
                 {
                     MessageBox.Show("Ошибка в " + (i+1).ToString() + " строке, недостаточное количество цифр.", "Ошибка входных данных", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
+                art.Add(temp.Substring(8, 4));
+                barcodes.Add(temp);
+          
 
-                String folder = txt_folder.Text;
+                //параметры изображения баркода
                 BarcodeLib.Barcode barcode = new BarcodeLib.Barcode()
                 {
                     IncludeLabel = true,
                     Alignment = AlignmentPositions.CENTER,
-                    Width = 300,
-                    Height = 100,
+                    Width = 230,
+                    Height = 110,
                     RotateFlipType = RotateFlipType.RotateNoneFlipNone,
                     BackColor = Color.White,
                     ForeColor = Color.Black,
                 };
 
+                //генерация изображения баркода и запись в список
                 Image img = barcode.Encode(TYPE.EAN13, temp);
-                img.Save(folder + "/" + temp +".png",System.Drawing.Imaging.ImageFormat.Png);
+                barimages.Add(img);
 
+                //сохранение изображений баркодов
+                if (check_save.Checked)
+                {
+                    img.Save(folder + "/" + temp + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                }
             }
+            //создание и формирование excel файлов на основе 
+            //списков баркодов и изображений
+            for (i = 0; i < range; i++)
+            {
+                Microsoft.Office.Interop.Excel.Application ExcelAppR = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook;
+
+                ObjWorkBook = ExcelAppR.Workbooks.Open("C:/barcode_generator/Res/ex.xls");
+                Microsoft.Office.Interop.Excel.Worksheet m_workSheet = null;
+                m_workSheet = ExcelAppR.ActiveSheet;
+                m_workSheet.Cells[2, 1] = barimages[i];
+                //xlWorkSheet.Shapes.AddPicture("C:\\pic.JPG", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 50, 50, 300, 45); //C:\\csharp-xl-picture.JPG
+
+                ObjWorkBook.SaveAs(folder + "/art-"+art[i] +".xls",
+                    Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null,
+                    Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, null, null, null, null, null);
+                ObjWorkBook.Close(false, null, null);
+            }
+
+
+
            
         }
 
