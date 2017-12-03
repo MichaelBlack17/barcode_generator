@@ -41,9 +41,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_height = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_width = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,12 +83,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Введите баркоды";
+            this.label2.Text = "Введите баркоды:";
             // 
             // progressbar
             // 
+            this.progressbar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.progressbar.Location = new System.Drawing.Point(204, 256);
             this.progressbar.Name = "progressbar";
             this.progressbar.Size = new System.Drawing.Size(204, 15);
@@ -125,6 +126,7 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -140,9 +142,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.txt_width);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txt_height);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(204, 91);
@@ -161,13 +163,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Высота:";
             // 
-            // textBox1
+            // txt_height
             // 
-            this.textBox1.Location = new System.Drawing.Point(68, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(116, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "110";
+            this.txt_height.Location = new System.Drawing.Point(68, 51);
+            this.txt_height.Name = "txt_height";
+            this.txt_height.Size = new System.Drawing.Size(116, 22);
+            this.txt_height.TabIndex = 1;
+            this.txt_height.Text = "110";
             // 
             // label3
             // 
@@ -178,13 +180,13 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Ширина:";
             // 
-            // textBox2
+            // txt_width
             // 
-            this.textBox2.Location = new System.Drawing.Point(68, 21);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(116, 22);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "230";
+            this.txt_width.Location = new System.Drawing.Point(68, 21);
+            this.txt_width.Name = "txt_width";
+            this.txt_width.Size = new System.Drawing.Size(116, 22);
+            this.txt_width.TabIndex = 3;
+            this.txt_width.Text = "230";
             // 
             // Form1
             // 
@@ -198,7 +200,10 @@
             this.Controls.Add(this.txt_codes);
             this.Controls.Add(this.btn_generate);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BarCode Generator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -225,9 +230,9 @@
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_width;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_height;
         private System.Windows.Forms.Label label1;
     }
 }
