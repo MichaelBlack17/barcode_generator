@@ -64,10 +64,9 @@ namespace barcode_generator
                 barimages.Add(img);
 
                 //сохранение изображений баркодов
-                if (check_save.Checked)
-                {
-                    img.Save(folder + "/" + temp + ".png", System.Drawing.Imaging.ImageFormat.Png);
-                }
+                
+                img.Save(folder + "/" + temp + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                
             }
             //создание и формирование excel файлов на основе 
             //списков баркодов и изображений
@@ -79,8 +78,28 @@ namespace barcode_generator
                 ObjWorkBook = ExcelAppR.Workbooks.Open("C:/barcode_generator/Res/ex.xls");
                 Microsoft.Office.Interop.Excel.Worksheet m_workSheet = null;
                 m_workSheet = ExcelAppR.ActiveSheet;
-                m_workSheet.Cells[2, 1] = barimages[i];
-                //xlWorkSheet.Shapes.AddPicture("C:\\pic.JPG", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 50, 50, 300, 45); //C:\\csharp-xl-picture.JPG
+               
+                int j = 0;
+                for (j = 2; j <8; j++)
+                {
+                    //добавление подписей Артикул под каждый бар код в файле excel
+                    m_workSheet.Cells[j * 2 - 1, 1] = "Артикул: " + art[i];
+                    m_workSheet.Cells[j * 2 - 1, 2] = "Артикул: " + art[i];
+                    m_workSheet.Cells[j * 2 - 1, 3] = "Артикул: " + art[i];
+
+                    //добавление изображений баркода в файл excel
+                    int top = Convert.ToInt32(m_workSheet.Cells[j * 2 - 2, 1].Top);
+                    int left = Convert.ToInt32(m_workSheet.Cells[j * 2 - 2, 1].Left);
+                    m_workSheet.Shapes.AddPicture(folder + "/" + barcodes[i] + ".png", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue,left ,top , -1, -1);
+                    top = Convert.ToInt32(m_workSheet.Cells[j * 2 - 2, 2].Top);
+                    left = Convert.ToInt32(m_workSheet.Cells[j * 2 - 2, 2].Left);
+                    m_workSheet.Shapes.AddPicture(folder + "/" + barcodes[i] + ".png", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, left, top, -1, -1);
+                    top = Convert.ToInt32(m_workSheet.Cells[j * 2 - 2, 3].Top);
+                    left = Convert.ToInt32(m_workSheet.Cells[j * 2 - 2, 3].Left);
+                    m_workSheet.Shapes.AddPicture(folder + "/" + barcodes[i] + ".png", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, left, top, -1, -1);
+
+                }
+                
 
                 ObjWorkBook.SaveAs(folder + "/art-"+art[i] +".xls",
                     Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null,
@@ -102,6 +121,11 @@ namespace barcode_generator
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
